@@ -1,0 +1,87 @@
+$blue: hsl(202, 74%, 64%);
+$total: 9;
+
+@mixin box($size, $color, $screen)
+{
+    width: $size;
+    @if $screen == big
+    {
+        height: $size * 1.77;
+    }
+    @else if $screen == medium
+    {
+        height: $size;
+    }
+    @else
+    {
+        height: $size / 1.77;
+    }
+    
+    background-color: $color;
+}
+
+@mixin imagegrid($columns, $margin)
+{    
+    &:nth-child(n)
+    {
+        margin-right: $margin;
+        margin-bottom: $margin;
+    }
+    &:nth-child(#{$columns}n)
+    {
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+}
+
+@function fancyColor($color)
+{
+    @return darken($blue, $color);
+}
+
+@function calculateWidth($columns, $margin)
+{
+    @return ((100% - (($columns - 1) * $margin)) / $columns);
+}
+
+@for $i from 1 through $total
+{
+    .kasse-#{$i}
+    {
+        float: left;
+        $tempwidth: calculateWidth(3, 3%);
+        @include box($tempwidth, fancyColor($i*5), small);
+        @include imagegrid(3, 3%);
+
+        @media only screen and (min-width: 600px)
+        {
+            @include box(calculateWidth(4, 2%), fancyColor($i*5), medium);
+            @include imagegrid(4, 2%);
+        }
+
+        @media only screen and (min-width: 1000px)
+        {
+            @include box(calculateWidth(5, 2%), fancyColor($i*5), big);
+            @include imagegrid(5, 2%);
+        }
+    }
+}
+
+.kasser
+{
+    height: 100vh;
+    width: 100%;
+}
+
+.heading
+{
+    color: blue;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1
+{
+    @extend .heading;
+    font-weight: 800;
+}
+

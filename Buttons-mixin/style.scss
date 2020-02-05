@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow|Ubuntu&display=swap');
+
+$color-dark: hsl(53, 40%, 35%);
+$color-light: scale-color($color-dark, $lightness: 90%);
+$color-text: adjust-hue($color-dark, 180deg);
+$color-heading: lighten($color-text, 5%);
+
+$font-main: 'PT Sans Narrow', Helvetica, Arial, Sans-serif;
+$font-heading: 'Ubuntu', Helvetica, Arial, Sans-serif;
+
+$total: 3;
+
+@mixin button($padding, $textcolor, $bgcolor)
+{
+    color: invert($textcolor, 80%);
+    padding: $padding/2 $padding;
+    border-radius: 20%;
+    $colorLightness: lightness($bgcolor);
+    background-image: linear-gradient($bgcolor, scale-color($bgcolor, $lightness: 50%));
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    background-color: $color-light;
+    color: $color-text;
+    font-family: $font-main;
+    margin: 2vh 1vw;
+}
+
+%heading
+{
+    color: $color-heading;
+    font-family: $font-heading;
+}
+
+h1
+{
+    @extend %heading;
+    font-size: 3rem;
+    text-shadow: -2px -2px 3px lighten($color-heading, 20%);
+    font-weight: 800;
+    padding: 1vh 0 2vh 0;
+    width: 100%;
+    border-bottom: 2px solid $color-text;
+}
+
+h2
+{
+    @extend %heading;
+    text-shadow: -1px -1px 1px lighten($color-heading, 20%);
+    font-weight: 700;
+    padding: 2vh 0;
+    margin-bottom: 2vh;
+}
+
+p
+{
+    font-size: 1.3rem;
+}
+
+article
+{
+    padding-bottom: 4vh;
+
+    &:first-of-type
+    {
+        padding-top: 4vh;
+    }
+
+    @for $i from 1 through $total
+    {
+        &:nth-child(#{$i+1})
+        {
+            h2
+            {
+                background-image: linear-gradient(darken($color-light, $i*5), darken($color-light, $i*8));
+                padding-left: $i * 1%;
+                width: 100% - ($i * 1%);
+            }
+            
+            p
+            {
+                margin-left: ($i * 1%);
+                padding-left: .5%;
+                border-left: 1px solid $color-text;
+            }
+
+        }
+    }
+}

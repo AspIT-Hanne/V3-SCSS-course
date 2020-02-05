@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow|Ubuntu&display=swap');
+
+$color-bg: hsl(40, 43%, 82%);
+$color-heading: hsl(220, 43%, 30%);
+
+$font-main: 'PT Sans Narrow', Helvetica, Arial, Sans-serif;
+$font-heading: 'Ubuntu', Helvetica, Arial, Sans-serif;
+
+// Mixins
+
+@mixin imagegrid($columns, $margin)
+{
+    width: ((100% - (($columns - 1) * $margin)) / $columns);
+    &:nth-child(n)
+    {
+        margin-right: $margin;
+        margin-bottom: $margin;
+    }
+    &:nth-child(#{$columns}n)
+    {
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+}
+
+// Styling
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    background-color: $color-bg;
+    padding: 1rem;
+    font-family: $font-main;
+}
+
+h1
+{
+    color: $color-heading;
+    font-family: $font-heading;
+    margin-bottom: 2rem;
+}
+
+.imagegrid
+{
+    .item
+    {
+        float:left;
+        @include imagegrid(3, 3%);
+    }
+
+    img
+    {
+        // display: block;
+        border-radius: 10px;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (min-width: 600px)
+{
+    .imagegrid
+    {
+        .item
+        {
+            @include imagegrid(5, 2%);
+        }
+    }
+}
+
+@media only screen and (min-width: 1000px)
+{
+    .imagegrid
+    {
+        .item
+        {
+            @include imagegrid(7, 1%);
+        }
+    }
+}

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Raleway|Roboto|Ubuntu&display=swap');
+
+$font-main: 'Raleway', Helvetica, Arial, sans-serif;
+$font-heading: 'Ubuntu', Helvetica, Arial, sans-serif;
+
+$color-heading1: hsla(255, 100%, 34%, 1);
+$color-heading2: red;
+$color-font: hsla(255, 100%, 14%, 1);
+
+h1
+{
+    color: $color-heading1;
+    font-family: $font-heading;
+    font-weight: 800;
+
+    .test2 & {
+        color: $color-heading2;
+    }
+}
+
+p
+{
+    color: $color-font;
+    font-family: $font-main;
+}
