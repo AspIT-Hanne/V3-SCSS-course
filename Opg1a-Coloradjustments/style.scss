@@ -2,9 +2,9 @@
 
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans|Oswald');
 
-$color_1: #793ca0;
+$color_1: #2f6cb9;
 $color_2: adjust-hue($color_1, 10deg);
-$color_3: adjust-hue($color_1, 180deg);
+$color_3: adjust-hue($color_1, 10deg);
 
 body {
 	font-family: 'Droid Sans', sans-serif;
@@ -25,7 +25,7 @@ h1 {
 	bottom: 10px;
 	left: 0;
 	padding: 25px 100px 25px 55px;
-	background-color: darken($color_1, 10%);
+	background-color: scale-color($color_1, $lightness: -20%);
 }
 
 h2 { font-family: 'Oswald', sans-serif; font-size: 1.5em; margin: 0 0 12px 0; }
@@ -77,7 +77,7 @@ aside > div h3 {
 .bar div {
 	width: 50%;
 	height: inherit;
-	background-color: lighten($color_2, 10%);
+	background-color: scale-color($color_2, $lightness: 5%);
 }
 
 
